@@ -4,8 +4,7 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  // find all categories - include its associated Products
   Category.findAll({
     attributes: ['id','category_name'],
     include: {
@@ -20,8 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  // find one category by its `id` value - include its associated Products
   Category.findOne({
     where: {id: req.params.id},
     attributes: ['id', 'category_name'],
@@ -44,7 +42,7 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  // create a new category
+  // creates a new category
   Category.create({
     category_name: req.body.category_name
   })
@@ -57,7 +55,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  // updates a category by its `id` value
   Category.update(req.body,
     {where: 
       {id: req.params.id}
